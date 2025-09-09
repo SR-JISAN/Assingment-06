@@ -46,8 +46,8 @@ categories()
 
    const card=()=>{
         const url = fetch('https://openapi.programming-hero.com/api/plants')
-        url.then(pro=>pro.json())
-        .then(res=>displayCard(res.plants))
+        url.then(pro1=>pro1.json())
+        .then(res1=>displayCard(res1.plants))
     }
 
     const displayCard =(cardShows)=>{
@@ -61,7 +61,7 @@ categories()
                                     <img src="${cardShow.image}" alt="${cardShow.name}" />
                                  </figure>
                                 <div class="card-body h-[65%]  px-0">
-                                    <h2 class="card-title font-semibold text-[#1F2937] text-2xl">${cardShow.name}</h2>
+                                    <h2  onclick="my_modal_5.showModal()" class="card-title font-semibold text-[#1F2937] text-2xl">${cardShow.name}</h2>
                                     <p class="text-[#1F2937] text-base">${cardShow.description}</p>
                                     <div class="flex justify-between items-center">
                                         <button class="btn bg-[#DCFCE7] text-[#15803D] rounded-full py-1 px-3">${cardShow.category}</button>
@@ -85,7 +85,11 @@ categories()
         .then(res2=>singleCategory(res2.plants))
     }
 
-    const singleCategory=(dd)=>{
+   let singleCategory = (dd = []) => {
+          if (!dd || !Array.isArray(dd)) {
+          console.warn("singleCategory expected an array but got:", dd);
+          return;
+         }
         const cardContainer = document.getElementById('card-container')
             cardContainer.innerHTML=''
             dd.forEach((d)=>{
@@ -96,7 +100,7 @@ categories()
                                     <img src="${d.image}" alt="${d.name}" />
                                  </figure>
                                 <div class="card-body h-[65%]  px-0">
-                                    <h2 class="card-title font-semibold text-[#1F2937] text-2xl">${d.name}</h2>
+                                    <h2 id="${d.id}" class="card-title font-semibold text-[#1F2937] text-2xl">${d.name}</h2>
                                     <p class="text-[#1F2937] text-base">${d.description}</p>
                                     <div class="flex justify-between items-center">
                                         <button class="btn bg-[#DCFCE7] text-[#15803D] rounded-full py-1 px-3">${d.category}</button>
@@ -111,9 +115,17 @@ categories()
             
             cardContainer.appendChild(div)
         })
+        const btn =document.getElementsByName(`${d.id}`)
+        console.log(btn)
+
     }
 
+// ---------------------------------modal--------------
 
+
+const modalApi=()=>{
+    
+}
 categoryCard()
 card()
 
