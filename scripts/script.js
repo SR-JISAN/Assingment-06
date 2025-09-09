@@ -61,7 +61,7 @@ categories()
                                     <img src="${cardShow.image}" alt="${cardShow.name}" />
                                  </figure>
                                 <div class="card-body h-[65%]  px-0">
-                                    <h2  onclick="my_modal_5.showModal()" class="card-title font-semibold text-[#1F2937] text-2xl">${cardShow.name}</h2>
+                                    <h2 onclick="loadCardDetails(${cardShow.id})" class="card-title font-semibold text-[#1F2937] text-2xl">${cardShow.name}</h2>
                                     <p class="text-[#1F2937] text-base">${cardShow.description}</p>
                                     <div class="flex justify-between items-center">
                                         <button class="btn bg-[#DCFCE7] text-[#15803D] rounded-full py-1 px-3">${cardShow.category}</button>
@@ -75,6 +75,7 @@ categories()
             `;
             
             cardContainer.appendChild(div)
+        
         });
     }
 
@@ -100,7 +101,7 @@ categories()
                                     <img src="${d.image}" alt="${d.name}" />
                                  </figure>
                                 <div class="card-body h-[65%]  px-0">
-                                    <h2 id="${d.id}" class="card-title font-semibold text-[#1F2937] text-2xl">${d.name}</h2>
+                                    <h2 class="card-title font-semibold text-[#1F2937] text-2xl">${d.name}</h2>
                                     <p class="text-[#1F2937] text-base">${d.description}</p>
                                     <div class="flex justify-between items-center">
                                         <button class="btn bg-[#DCFCE7] text-[#15803D] rounded-full py-1 px-3">${d.category}</button>
@@ -115,17 +116,29 @@ categories()
             
             cardContainer.appendChild(div)
         })
-        const btn =document.getElementsByName(`${d.id}`)
-        console.log(btn)
+        
 
     }
 
 // ---------------------------------modal--------------
 
 
-const modalApi=()=>{
-    
+const loadCardDetails=(id)=>{
+    const url = fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+    url.then(pro => pro.json())
+    .then(res=> modal(res.plants))
+};
+
+
+const modal=(modalData)=>{
+        const setModal = document.getElementById('setModal')
+        setModal.innerHTML='';
+        const test =document.getElementById("card_modal")
+        console.log(test)
 }
+
+
+
 categoryCard()
 card()
 
