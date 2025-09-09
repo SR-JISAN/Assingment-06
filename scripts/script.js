@@ -101,14 +101,14 @@ categories()
                                     <img src="${d.image}" alt="${d.name}" />
                                  </figure>
                                 <div class="card-body h-[65%]  px-0">
-                                    <h2 class="card-title font-semibold text-[#1F2937] text-2xl">${d.name}</h2>
+                                    <h2 onclick="loadCardDetails(${d.id})" class="card-title font-semibold text-[#1F2937] text-2xl">${d.name}</h2>
                                     <p class="text-[#1F2937] text-base">${d.description}</p>
                                     <div class="flex justify-between items-center">
                                         <button class="btn bg-[#DCFCE7] text-[#15803D] rounded-full py-1 px-3">${d.category}</button>
                                         <h1 class="text-[#1F2937] font-semibold text-xl">৳${d.price}</h1>
                                     </div>
                                   <div class="card-actions justify-center w-full">
-                                    <button class="btn rounded-full mt-3 p-4 bg-[#15803D] text-white w-full font-medium text-xl hover:bg-green-500 shadow-sm">Add to Cart</button>
+                                    <button id="cat-btn${d.id}" class="btn rounded-full mt-3 p-4 bg-[#15803D] text-white w-full font-medium text-xl hover:bg-green-500 shadow-sm">Add to Cart</button>
                                   </div>
                                 </div>
                             </div>
@@ -129,14 +129,33 @@ const loadCardDetails=(id)=>{
     .then(res=> modal(res.plants))
 };
 
-
 const modal=(modalData)=>{
-        const setModal = document.getElementById('setModal')
-        setModal.innerHTML='';
-        const test =document.getElementById("card_modal")
-        console.log(test)
+        const setModal = document.getElementById('card_modal')
+        
+        setModal.innerHTML =`
+        <div class="modal-box h-[400px]">
+    <div>
+    <h3 class="text-2xl mb-4  font-bold">${modalData.name}</h3>
+    <figure class="h-[40%]">
+      <img class="w-full" src="${modalData.image}" alt="${modalData.name}" />
+    </figure>
+    <p class="py-2 font-bold text-xl">Category:<span class ="text-[#1F2937] text-base font-normal"> ${modalData.category}</span></p>
+    <p class="py-2 font-bold text-xl">Price:<span class ="text-[#1F2937] text-base font-normal"> ৳${modalData.price}</span></p>
+    <p class="py-2 font-bold text-xl">Description:<span class ="text-[#1F2937] text-base font-normal"> ${modalData.description}</span></p>
+    <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+      </div>
+    </=div>
+    </div>
+        `;
+        document.getElementById("card_modal").showModal()
+        
 }
 
+// -----------------------add to cart---------------
 
 
 categoryCard()
