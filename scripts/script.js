@@ -84,46 +84,8 @@ const card=()=>{
     };
 
  
-card()
+// card()
 
-
-   
-  //  function display(){
-  //   document.getElementById('all-category').addEventListener('click',function displayCard(data) {
-  //     console.log(data.target.id)
-
-        
-
-  //     const displayCard =(cardShows)=>{
-
-  // //       const cardContainer = document.getElementById('card-container')
-  // //       cardContainer.innerHTML=''
-  //       cardShows.forEach(cardShow => {
-  //           const div = document.createElement('div')
-  //           div.innerHTML =`
-  //           <div class="card h-[550px] bg-white px-4 py-4 rounded-lg shadow-sm">
-  //                                <figure class="h-[35%]">
-  //                                   <img src="${cardShow.image}" alt="${cardShow.name}" />
-  //                                </figure>
-  //                               <div class="card-body h-[65%]  px-0">
-  //                                   <h2 id="${cardShow.id}" onclick="loadCardDetails(${cardShow.id})" class="card-title font-semibold text-[#1F2937] text-2xl">${cardShow.name}</h2>
-  //                                   <p class="text-[#1F2937] text-base">${cardShow.description}</p>
-  //                                   <div class="flex justify-between items-center">
-  //                                       <button class="btn bg-[#DCFCE7] text-[#15803D] rounded-full py-1 px-3">${cardShow.category}</button>
-  //                                       <h1 id="${cardShow.price}" class="text-[#1F2937] font-semibold text-xl">${cardShow.price}</h1>
-  //                                   </div>
-  //                                 <div class="card-actions justify-center w-full">
-  //                                   <button class="btn add-to-cart rounded-full mt-3 p-4 bg-[#15803D] text-white w-full font-medium text-xl hover:bg-green-500 shadow-sm">Add to Cart</button>
-  //                                 </div>
-  //                               </div>
-  //                           </div>
-  //           `;
-  //           cardContainer.appendChild(div)
-       
-  //       });
-  //   };
-  //   })
-  //  }
     
 
 
