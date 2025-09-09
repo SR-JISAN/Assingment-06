@@ -56,26 +56,25 @@ categories()
         cardShows.forEach(cardShow => {
             const div = document.createElement('div')
             div.innerHTML =`
-            <div class="card h-[550px] bg-white px-4 py-4 rounded-lg shadow-sm">
+            <div class="card   h-[550px] bg-white px-4 py-4 rounded-lg shadow-sm">
                                  <figure class="h-[35%]">
                                     <img src="${cardShow.image}" alt="${cardShow.name}" />
                                  </figure>
                                 <div class="card-body h-[65%]  px-0">
-                                    <h2 onclick="loadCardDetails(${cardShow.id})" class="card-title font-semibold text-[#1F2937] text-2xl">${cardShow.name}</h2>
+                                    <h2 id="${cardShow.id}" onclick="loadCardDetails(${cardShow.id})" class="card-title font-semibold text-[#1F2937] text-2xl">${cardShow.name}</h2>
                                     <p class="text-[#1F2937] text-base">${cardShow.description}</p>
                                     <div class="flex justify-between items-center">
                                         <button class="btn bg-[#DCFCE7] text-[#15803D] rounded-full py-1 px-3">${cardShow.category}</button>
-                                        <h1 class="text-[#1F2937] font-semibold text-xl">৳${cardShow.price}</h1>
+                                        <h1 id="${cardShow.price}" class="text-[#1F2937] font-semibold text-xl">${cardShow.price}</h1>
                                     </div>
                                   <div class="card-actions justify-center w-full">
-                                    <button class="btn rounded-full mt-3 p-4 bg-[#15803D] text-white w-full font-medium text-xl hover:bg-green-500 shadow-sm">Add to Cart</button>
+                                    <button class="btn add-to-cart rounded-full mt-3 p-4 bg-[#15803D] text-white w-full font-medium text-xl hover:bg-green-500 shadow-sm">Add to Cart</button>
                                   </div>
                                 </div>
                             </div>
             `;
-            
             cardContainer.appendChild(div)
-        
+       
         });
     }
 
@@ -105,15 +104,14 @@ categories()
                                     <p class="text-[#1F2937] text-base">${d.description}</p>
                                     <div class="flex justify-between items-center">
                                         <button class="btn bg-[#DCFCE7] text-[#15803D] rounded-full py-1 px-3">${d.category}</button>
-                                        <h1 class="text-[#1F2937] font-semibold text-xl">৳${d.price}</h1>
+                                        <h1 id="${d.price}" class="text-[#1F2937font-semibold text-xl">${d.price}</h1>
                                     </div>
                                   <div class="card-actions justify-center w-full">
-                                    <button id="cat-btn${d.id}" class="btn rounded-full mt-3 p-4 bg-[#15803D] text-white w-full font-medium text-xl hover:bg-green-500 shadow-sm">Add to Cart</button>
+                                    <button class="btn add-to-cart rounded-full mt-3 p-4 bg-[#15803D] text-white w-full font-medium text-xl hover:bg-green-500 shadow-sm">Add to Cart</button>
                                   </div>
                                 </div>
                             </div>
             `;
-            
             cardContainer.appendChild(div)
         })
         
@@ -126,7 +124,9 @@ categories()
 const loadCardDetails=(id)=>{
     const url = fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
     url.then(pro => pro.json())
-    .then(res=> modal(res.plants))
+    .then(res=>{
+      modal(res.plants)
+    }) 
 };
 
 const modal=(modalData)=>{
@@ -155,9 +155,56 @@ const modal=(modalData)=>{
         
 }
 
-// -----------------------add to cart---------------
+// -----------------------add to cart--------------
+
+let cardCreate = false;
+const cartContainer = document.getElementById('card-container')
+cartContainer.addEventListener('click',(e)=>{
+  
+  if(e.target.innerText === 'Add to Cart'){
+    const cartToSet = document.getElementById('cartToSet')
+    const div = document.createElement('div')
+    div.innerHTML=`
+    <div id="card-${e.target.parentNode.parentNode.children[0].id}" class="bg-[#F0FDF4] mb-4 rounded-lg py-2 px-3 flex justify-between items-center">
+                          <div>
+                          <h1 class="font-semibold text-lg">${e.target.parentNode.parentNode.children[0].innerText}</h1>
+                          <p  class="text-[#1F2937] text-xl">price:<span id="price"> ${e.target.parentNode.parentNode.children[2].children[1].innerText}</span></p>
+                           </div>
+                      <button id="btn-${e.target.parentNode.parentNode.children[0].id}"    class="btn btn-square removing bg-[#F0FDF4] border-0">
+                          ❌
+                      </button>
+                      </div>
+  
+    `
+          cartToSet.appendChild(div);
+         const total = parseInt(document.getElementById('total').innerText) 
+         let empty = 0;
+         let priceDiv =e.target.parentNode.parentNode.children[2].children[1].id
+         const price = parseInt(document.getElementById(priceDiv).innerText);
+         const sum = total + price;   
+           empty = sum
+        document.getElementById('total').innerText = empty;
+        const btnDelete = document.getElementById(`btn-${e.target.parentNode.parentNode.children[0].id}`)
+        const field =document.getElementById(`card-${e.target.parentNode.parentNode.children[0].id}`)
+          document.getElementById(btnDelete.id).addEventListener('click',()=>{
+            
+              field.classList.add('active')
 
 
+              const currentTotal = parseInt(document.getElementById('total').innerText, 10) || 0;
+             const minus = currentTotal - price;
+              document.getElementById('total').innerText = minus;   
+            
+              
+          })
+    } 
+
+ 
+})
+
+
+
+ 
 categoryCard()
 card()
 

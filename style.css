@@ -3,3 +3,6 @@
      font-optical-sizing: auto;
      
 }
+.active{
+     display: none;
+}
