@@ -24,9 +24,11 @@
         // ---------adding-removing---------styles
    document.getElementById('categories').addEventListener('click',(event)=>{
                const btns = document.querySelectorAll('.removing')
+               
                btns.forEach(btn=>{
                 btn.classList.remove('bg-green-800')
                 btn.classList.remove('text-white')
+                console.log(btn)
                })
                categoryCard(event.target.id)
                 if(event.target.localName === 'button'){
@@ -43,20 +45,21 @@
 categories()
 
 // ----------------------card-part-------------------------
-
-   const card=()=>{
+const card=()=>{
         const url = fetch('https://openapi.programming-hero.com/api/plants')
         url.then(pro1=>pro1.json())
         .then(res1=>displayCard(res1.plants))
     }
 
-    const displayCard =(cardShows)=>{
+      
+  const displayCard =(cardShows)=>{
         const cardContainer = document.getElementById('card-container')
         cardContainer.innerHTML=''
         cardShows.forEach(cardShow => {
             const div = document.createElement('div')
             div.innerHTML =`
-            <div class="card   h-[550px] bg-white px-4 py-4 rounded-lg shadow-sm">
+            
+            <div class="card h-[550px]  bg-white px-4 py-4 rounded-lg shadow-sm">
                                  <figure class="h-[35%]">
                                     <img src="${cardShow.image}" alt="${cardShow.name}" />
                                  </figure>
@@ -72,14 +75,70 @@ categories()
                                   </div>
                                 </div>
                             </div>
+                          
             `;
             cardContainer.appendChild(div)
+          });
+          const hidden = document.getElementById('hidden')
+          btnH(hidden)
+    };
+
+ 
+card()
+
+
+   
+  //  function display(){
+  //   document.getElementById('all-category').addEventListener('click',function displayCard(data) {
+  //     console.log(data.target.id)
+
+        
+
+  //     const displayCard =(cardShows)=>{
+
+  // //       const cardContainer = document.getElementById('card-container')
+  // //       cardContainer.innerHTML=''
+  //       cardShows.forEach(cardShow => {
+  //           const div = document.createElement('div')
+  //           div.innerHTML =`
+  //           <div class="card h-[550px] bg-white px-4 py-4 rounded-lg shadow-sm">
+  //                                <figure class="h-[35%]">
+  //                                   <img src="${cardShow.image}" alt="${cardShow.name}" />
+  //                                </figure>
+  //                               <div class="card-body h-[65%]  px-0">
+  //                                   <h2 id="${cardShow.id}" onclick="loadCardDetails(${cardShow.id})" class="card-title font-semibold text-[#1F2937] text-2xl">${cardShow.name}</h2>
+  //                                   <p class="text-[#1F2937] text-base">${cardShow.description}</p>
+  //                                   <div class="flex justify-between items-center">
+  //                                       <button class="btn bg-[#DCFCE7] text-[#15803D] rounded-full py-1 px-3">${cardShow.category}</button>
+  //                                       <h1 id="${cardShow.price}" class="text-[#1F2937] font-semibold text-xl">${cardShow.price}</h1>
+  //                                   </div>
+  //                                 <div class="card-actions justify-center w-full">
+  //                                   <button class="btn add-to-cart rounded-full mt-3 p-4 bg-[#15803D] text-white w-full font-medium text-xl hover:bg-green-500 shadow-sm">Add to Cart</button>
+  //                                 </div>
+  //                               </div>
+  //                           </div>
+  //           `;
+  //           cardContainer.appendChild(div)
        
-        });
-    }
+  //       });
+  //   };
+  //   })
+  //  }
+    
+
+
+
+
+
+        
+
+    
+    
 
 // ---------------category to card----------------
-    const categoryCard=(id)=>{
+    
+
+const categoryCard=(id)=>{
         const url = fetch(`https://openapi.programming-hero.com/api/category/${id}`)
         url.then(propa=>propa.json())
         .then(res2=>singleCategory(res2.plants))
@@ -156,13 +215,14 @@ const modal=(modalData)=>{
 }
 
 // -----------------------add to cart--------------
-
-let cardCreate = false;
 const cartContainer = document.getElementById('card-container')
 cartContainer.addEventListener('click',(e)=>{
   
   if(e.target.innerText === 'Add to Cart'){
     const cartToSet = document.getElementById('cartToSet')
+
+    
+    
     const div = document.createElement('div')
     div.innerHTML=`
     <div id="card-${e.target.parentNode.parentNode.children[0].id}" class="bg-[#F0FDF4] mb-4 rounded-lg py-2 px-3 flex justify-between items-center">
@@ -182,7 +242,7 @@ cartContainer.addEventListener('click',(e)=>{
          let priceDiv =e.target.parentNode.parentNode.children[2].children[1].id
          const price = parseInt(document.getElementById(priceDiv).innerText);
          const sum = total + price;   
-           empty = sum
+         empty = sum
         document.getElementById('total').innerText = empty;
         const btnDelete = document.getElementById(`btn-${e.target.parentNode.parentNode.children[0].id}`)
         const field =document.getElementById(`card-${e.target.parentNode.parentNode.children[0].id}`)
@@ -206,5 +266,5 @@ cartContainer.addEventListener('click',(e)=>{
 
  
 categoryCard()
-card()
+// card()
 
