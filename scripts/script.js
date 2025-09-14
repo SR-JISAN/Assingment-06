@@ -10,12 +10,12 @@
 
     const categoryDisplay=(display)=>{
         const setCategory = document.getElementById('categories');
-        setCategory.innerHTML='';
+       
         
         display.forEach(data => {
             const btn = document.createElement('div')
             btn.innerHTML = `
-            <button id="${data.id}"  class="w-full btn   border-0 hover:bg-[#15803D] hover:text-white bg-[#F0FDF4]  rounded-lg text-xl py-4  font-semibold mb-2 removing">${data.category_name}</button>
+            <button id="${data.id}"  class="w-full btn    border-0 hover:bg-[#15803D] hover:text-white bg-[#F0FDF4]  rounded-lg text-xl py-4  font-semibold mb-2 removing">${data.category_name}</button>
             `
             setCategory.appendChild(btn)  
         });
@@ -23,9 +23,9 @@
 
         // ---------adding-removing---------styles
    document.getElementById('categories').addEventListener('click',(event)=>{
-               const btns = document.querySelectorAll('.removing')
-               
+               const btns = document.querySelectorAll('.removing')     
                btns.forEach(btn=>{
+                
                 btn.classList.remove('bg-green-800')
                 btn.classList.remove('text-white')
                 console.log(btn)
@@ -79,12 +79,12 @@ const card=()=>{
             `;
             cardContainer.appendChild(div)
           });
-          const hidden = document.getElementById('hidden')
-          btnH(hidden)
     };
 
- 
-// card()
+ document.getElementById('allBtn').addEventListener('click', ()=>{
+card()
+ })
+
 
     
 
@@ -181,10 +181,8 @@ const cartContainer = document.getElementById('card-container')
 cartContainer.addEventListener('click',(e)=>{
   
   if(e.target.innerText === 'Add to Cart'){
+    alert(`your are adding: ${e.target.parentNode.parentNode.children[0].innerText}`)
     const cartToSet = document.getElementById('cartToSet')
-
-    
-    
     const div = document.createElement('div')
     div.innerHTML=`
     <div id="card-${e.target.parentNode.parentNode.children[0].id}" class="bg-[#F0FDF4] mb-4 rounded-lg py-2 px-3 flex justify-between items-center">
@@ -206,18 +204,13 @@ cartContainer.addEventListener('click',(e)=>{
          const sum = total + price;   
          empty = sum
         document.getElementById('total').innerText = empty;
-        const btnDelete = document.getElementById(`btn-${e.target.parentNode.parentNode.children[0].id}`)
+        let btnDelete = document.getElementById(`btn-${e.target.parentNode.parentNode.children[0].id}`)
         const field =document.getElementById(`card-${e.target.parentNode.parentNode.children[0].id}`)
-          document.getElementById(btnDelete.id).addEventListener('click',()=>{
-            
+          document.getElementById(btnDelete.id).addEventListener('click',()=>{ 
               field.classList.add('active')
-
-
               const currentTotal = parseInt(document.getElementById('total').innerText, 10) || 0;
              const minus = currentTotal - price;
               document.getElementById('total').innerText = minus;   
-            
-              
           })
     } 
 
@@ -228,5 +221,3 @@ cartContainer.addEventListener('click',(e)=>{
 
  
 categoryCard()
-// card()
-
