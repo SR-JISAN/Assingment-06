@@ -23,6 +23,7 @@
 
         // ---------adding-removing---------styles
    document.getElementById('categories').addEventListener('click',(event)=>{
+    spinner()
                const btns = document.querySelectorAll('.removing')     
                btns.forEach(btn=>{
                 
@@ -85,7 +86,17 @@ const card=()=>{
 card()
  })
 
-
+const spinner=()=>{
+  const cardContain = document.getElementById('card-container')
+  const div = document.createElement('div')
+  div.innerHTML = `
+  
+  <div class=" flex justify-center items-center">
+  <span class="loading loading-bars loading-xl col-span-3 "></span>
+  </div>
+  `
+  cardContain.appendChild(div)
+}
     
 
 
@@ -163,15 +174,15 @@ const modal=(modalData)=>{
     <p class="py-2 font-bold text-xl">Category:<span class ="text-[#1F2937] text-base font-normal"> ${modalData.category}</span></p>
     <p class="py-2 font-bold text-xl">Price:<span class ="text-[#1F2937] text-base font-normal"> ৳${modalData.price}</span></p>
     <p class="py-2 font-bold text-xl">Description:<span class ="text-[#1F2937] text-base font-normal"> ${modalData.description}</span></p>
-    <div class="modal-action">
+    <div class="modal-action justify-center ">
       <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
-        <button class="btn">Close</button>
+        <button class="btn  bg-[#FACC15] py-4 px-7 font-medium text-[#15803D] text-base rounded-full ">Close</button>
       </form>
       </div>
     </=div>
     </div>
         `;
+        
         document.getElementById("card_modal").showModal()
         
 }
