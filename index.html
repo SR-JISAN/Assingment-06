@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,7 @@
     <!-- ---------Css Link For Font------------ -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body">
     <!-- nav-bar--------------- -->
     <header>
         <!-- nav bar -->
@@ -24,13 +24,13 @@
                 </div>
                 <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow ">
                     <li>
-                        <a class="font-semibold">About</a>
+                        <a href="#about" class="font-semibold">About</a>
                     </li>
                     <li>
-                        <a class="font-semibold">Gallery</a>
+                        <a href="#galary" class="font-semibold">Gallery</a>
                     </li>
                     <li>
-                        <a class="font-semibold">Plant a Tree</a>
+                        <a class="font-semibold" href="#plantTree">Plant a Tree</a>
                     </li>
                 </ul>
              </div>
@@ -38,13 +38,13 @@
             </div>
             <div class="navbar-center hidden lg:flex">
                 <ul class="menu menu-horizontal px-1">
-                     <li><a class="text-white text-base">About</a></li>
-                     <li><a class="text-white text-base">Gallery</a></li>
-                     <li><a class="text-white text-base">Plant a Tree</a></li>
+                     <li><a  href="#about" class="text-white text-base">About</a></li>
+                     <li><a  href="#galary" class="text-white text-base">Gallery</a></li>
+                     <li><a  href="#plantTree" class="text-white text-base">Plant a Tree</a></li>
                 </ul>
             </div>
             <div class="navbar-end ">
-               <a class="btn bg-[#FACC15] pt-3 pb-3 pl-5 pr-5 font-medium text-[#15803D] text-base rounded-full ">Plant a Tree</a>
+               <a  href="#plantTree" class="btn bg-[#FACC15] pt-3 pb-3 pl-5 pr-5 font-medium text-[#15803D] text-base rounded-full ">Plant a Tree</a>
             </div>
          </div>
         </nav>
@@ -70,34 +70,29 @@
         </section>
         <!-- choose your tree------------------- -->
         <section class="pb-40">
-            <div class="mt-24 pb-10">
+            <div id="galary" class="mt-24 pb-10">
                 <h1 class="text-center text-3xl font-semibold ">Choose Your Trees</h1>
             </div>
             <!-- -----container--------- -->
-            <div class="allCard lg:w-[95%] mx-auto flex flex-col-reverse lg:flex-row justify-between gap-5 ">
-                <div class="mx-auto lg:flex justify-between w-[100%] lg:w-[80%]">
+            <div class="allCard lg:w-[95%] mx-auto flex flex-col-reverse lg:flex-row gap-5">
+                <div class="mx-auto lg:flex justify-between w-[100%] gap-5 lg:w-[80%]">
                 <!-- category------- -->
-                 <div  class="border-0 w-[95%] mx-auto lg:w-[30%]">
+                 <div  class=" w-[95%] mx-auto lg:w-[30%]">
                     <h1 class="text-xl font-semibold mb-5">Categories</h1>
                     
                     <div  id="categories" class="w-full">
                             
-                        <button id="allBtn"  class="w-full btn   border-0 hover:bg-[#15803D] hover:text-white bg-[#F0FDF4]  rounded-lg text-xl py-4  font-semibold mb-2  removing">All Categories</button>
+                        <button id="allBtn"  class="w-full btn   border-0 hover:bg-[#15803D] hover:text-white bg-[#F0FDF4]  rounded-lg text-xl py-4 justify-start  font-semibold mb-2  removing">All Categories</button>
                     </div>
 
                  </div>
                  <!-- card----------- -->
-                  <div id="card-container" class="grid lg:grid-cols-3 gap-3 lg:gap-7  w-[95%] mx-auto lg:w-[70%] ">  
-                   
-                   
-
-
+                  <div id="card-container" class="grid lg:grid-cols-3 gap-3 w-[95%] mx-auto lg:w-[70%] ">  
                   </div>
                 </div>
                   <!-- cart---------- -->
-                  <div class=" p-4  bg-white  w-[95%] mx-auto lg:w-[20%]">
-                        <!-- --------------------add-to-cart------------------ -->
-                        <h1 class="font-semibold text-xl">Your Cart</h1>
+                   <div class="bg-white p-2 mx-auto w-[95%] lg:w-[20%] rounded-lg">
+                     <h1 class="font-semibold mb-3 text-xl">Your Cart</h1>
                         <div id="cartToSet">
                       
                         </div>
@@ -117,7 +112,7 @@
         </section>
             <!-- ------------------------------About the Campaign----------- -->
         <section>
-            <div class="lg:w-2/3 mx-auto">
+            <div id="about" class="lg:w-2/3 mx-auto">
                 <h1 class="text-center text-3xl font-bold mb-5 text-[#1F2937]">About the Campaign</h1>
                 <div class="lg:flex justify-between items-center">
                     <div class="flex-1">
@@ -159,10 +154,23 @@
                 </div>
             </div>
         </section>
-
+<!-- ----------------------plant a tree--------------- -->
         <section>
-              <div class="bg-[#166534] py-28">
-                  <h1 class="text-center text-white font-bold text-2xl">Plant a Tree Today</h1>
+              <div id="plantTree" class="bg-[#166534] py-28">
+                  <h1 class="text-center text-white font-bold text-3xl">Plant a Tree Today</h1>
+                  <div class="flex  flex-col gap-3 rounded-xl mt-6 bg-[#15803D] w-[90%] lg:w-[30%] p-10 mx-auto">
+                    <input type="text" placeholder="Your Name" class="input rounded-md w-full "/>
+                    <input type="email" placeholder="Your Email Address" class="input rounded-md w-full "/>
+                    <select class="select font-medium w-full  text-[#1F2937]">
+                        <option disabled selected>Number of Trees</option>
+                        <option>1 Tree 5$</option>
+                        <option>5 Tree 25$</option>
+                        <option>10 Tree 50$</option>
+                    </select>
+                    <div class="w-full">
+                       <a  href="#plantTree" class="btn w-full bg-[#FACC15] pt-3 pb-3 pl-5 pr-5 font-medium text-[#15803D] text-base rounded-full ">Donate Now</a>
+                    </div>
+                  </div>
 
               </div>
         </section>
