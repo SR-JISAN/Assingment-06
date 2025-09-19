@@ -227,77 +227,10 @@ document.getElementById("cartToSet").addEventListener("click", (e) => {
     const cartItem = e.target.closest(".cart-item"); 
     alert(`you want to delete ${cartItem.children[0].children[0].children[0].innerText}`)
     const price = parseInt(cartItem.getAttribute("data-price")) || 0;
-
     cartItem.remove();
-
     const totalEl = document.getElementById("total");
     const currentTotal = parseInt(totalEl.innerText) || 0;
     totalEl.innerText = Math.max(currentTotal - price, 0);
   }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const cartContainer = document.getElementById('card-container')
-// cartContainer.addEventListener('click',(e)=>{
-  
-//   if(e.target.innerText === 'Add to Cart'){
-//     alert(`your are adding: ${e.target.parentNode.parentNode.children[0].innerText}`)
-//     const cartToSet = document.getElementById('cartToSet')
-//     const div = document.createElement('div')
-//     div.innerHTML=`
-//     <div id="card-${e.target.parentNode.parentNode.children[0].id}" class="bg-[#F0FDF4] mb-4 rounded-lg py-2 px-3 flex justify-between items-center">
-//                           <div>
-//                           <h1 class="font-semibold text-lg">${e.target.parentNode.parentNode.children[0].innerText}</h1>
-//                           <p  class="text-[#1F2937] text-xl">price:<span id="price"> ${e.target.parentNode.parentNode.children[2].children[1].innerText}</span></p>
-//                            </div>
-//                       <button id="btn-${e.target.parentNode.parentNode.children[0].id}"    class="btn btn-square removing bg-[#F0FDF4] border-0">
-//                           ❌
-//                       </button>
-//                       </div>
-  
-//     `
-//           cartToSet.appendChild(div);
-//          const total = parseInt(document.getElementById('total').innerText) 
-//          let empty = 0;
-//          let priceDiv =e.target.parentNode.parentNode.children[2].children[1].id
-//          const price = parseInt(document.getElementById(priceDiv).innerText);
-//          const sum = total + price;   
-//          empty = sum
-//         document.getElementById('total').innerText = empty;
-//         let btnDelete = document.getElementById(`btn-${e.target.parentNode.parentNode.children[0].id}`)
-//         const field =document.getElementById(`card-${e.target.parentNode.parentNode.children[0].id}`)
-//           document.getElementById(btnDelete.id).addEventListener('click',()=>{ 
-//               // field.classList.add('active')
-//               field.remove()
-//               const currentTotal = parseInt(document.getElementById('total').innerText, 10) || 0;
-//              const minus = currentTotal - price;
-//               document.getElementById('total').innerText = minus;   
-//           })
-//     } 
-
- 
-// })
-
-
-
- 
 categoryCard()
